@@ -4,14 +4,381 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atlanta Trends 2026 | Whatnot Insights</title>
-  <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Whatnot Brand Colors */
+    :root {
+      --whatnot-yellow: #FFF351;
+      --whatnot-black: #0F0F0F;
+      --whatnot-white: #FFFFFF;
+      --whatnot-gray: #6B7280;
+      --whatnot-light-gray: #F3F4F6;
+      --whatnot-border: #E5E7EB;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--whatnot-black);
+      background-color: var(--whatnot-white);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header with Whatnot Branding */
+    header {
+      background: var(--whatnot-black);
+      color: var(--whatnot-white);
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      border-bottom: 6px solid var(--whatnot-yellow);
+    }
+
+    .whatnot-logo {
+      display: inline-block;
+      background: var(--whatnot-yellow);
+      color: var(--whatnot-black);
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+
+    .city-label {
+      display: inline-block;
+      background: var(--whatnot-yellow);
+      color: var(--whatnot-black);
+      padding: 10px 25px;
+      border-radius: 25px;
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    /* Navigation */
+    .nav-bar {
+      background: var(--whatnot-white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--whatnot-yellow);
+    }
+
+    .nav-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--whatnot-black);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .nav-links a:hover {
+      color: var(--whatnot-yellow);
+    }
+
+    .home-link {
+      color: var(--whatnot-black);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      background: var(--whatnot-yellow);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .home-link:hover {
+      background: var(--whatnot-black);
+      color: var(--whatnot-yellow);
+    }
+
+    /* Main Content */
+    main {
+      padding: 60px 0;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      margin-bottom: 30px;
+      color: var(--whatnot-black);
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--whatnot-black);
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--whatnot-white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid var(--whatnot-border);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      border-color: var(--whatnot-yellow);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--whatnot-gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--whatnot-black);
+      margin-bottom: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-description {
+      font-size: 0.95rem;
+      color: var(--whatnot-gray);
+    }
+
+    /* Trend Cards */
+    .trends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .trend-card {
+      background: var(--whatnot-white);
+      border-radius: 12px;
+      padding: 35px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-left: 6px solid var(--whatnot-yellow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .trend-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .trend-number {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background: var(--whatnot-yellow);
+      color: var(--whatnot-black);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+    }
+
+    .trend-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: var(--whatnot-black);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .trend-card p {
+      color: var(--whatnot-gray);
+      line-height: 1.7;
+    }
+
+    .growth-badge {
+      display: inline-block;
+      background: var(--whatnot-black);
+      color: var(--whatnot-yellow);
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .growth-badge.negative {
+      background: #DC2626;
+      color: var(--whatnot-white);
+    }
+
+    /* Category Sections */
+    .category-section {
+      background: var(--whatnot-white);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-top: 4px solid var(--whatnot-yellow);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--whatnot-yellow);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+    }
+
+    .insights-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .insights-list li {
+      padding: 18px 0;
+      border-bottom: 2px solid var(--whatnot-border);
+      color: var(--whatnot-gray);
+      font-size: 1.05rem;
+    }
+
+    .insights-list li:last-child {
+      border-bottom: none;
+    }
+
+    .insights-list strong {
+      color: var(--whatnot-black);
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--whatnot-black);
+      color: var(--whatnot-white);
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 60px;
+      border-top: 6px solid var(--whatnot-yellow);
+    }
+
+    footer p {
+      opacity: 0.9;
+      margin: 5px 0;
+    }
+
+    .footer-logo {
+      display: inline-block;
+      background: var(--whatnot-yellow);
+      color: var(--whatnot-black);
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .stats-grid,
+      .trends-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-section {
+        padding: 25px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="container">
+      <div class="whatnot-logo">WHATNOT</div>
       <h1>Atlanta 2026</h1>
       <p class="subtitle">The South's Cultural Capital: Cozy Maximalism Meets Hometown Pride</p>
       <span class="city-label">🍑 ATL Trends</span>
@@ -65,7 +432,7 @@
         <span class="category-icon">👗</span>
         <h2>Fashion: Cozy Maximalism</h2>
       </div>
-      <p><strong>The Story:</strong> The South's cultural capital leaned into cozy maximalism while keeping athleisure as its foundation</p>
+      <p style="color: var(--whatnot-gray); margin-bottom: 30px; font-size: 1.05rem;"><strong style="color: var(--whatnot-black);">The Story:</strong> The South's cultural capital leaned into cozy maximalism while keeping athleisure as its foundation</p>
 
       <div class="trends-grid">
         <div class="trend-card">
@@ -104,7 +471,7 @@
         <span class="category-icon">🧸</span>
         <h2>Toys: Blind Box Domination</h2>
       </div>
-      <p><strong>The Story:</strong> The South's toy hub went all-in on blind box culture, with Popmart claiming nearly 1 in 4 orders</p>
+      <p style="color: var(--whatnot-gray); margin-bottom: 30px; font-size: 1.05rem;"><strong style="color: var(--whatnot-black);">The Story:</strong> The South's toy hub went all-in on blind box culture, with Popmart claiming nearly 1 in 4 orders</p>
 
       <div class="trends-grid">
         <div class="trend-card">
@@ -143,7 +510,7 @@
         <span class="category-icon">🍬</span>
         <h2>Food & Drink: The Traditionalist</h2>
       </div>
-      <p><strong>The Story:</strong> The South's food hub stayed traditional, with cookies, jams, and beverages claiming share from experimental categories</p>
+      <p style="color: var(--whatnot-gray); margin-bottom: 30px; font-size: 1.05rem;"><strong style="color: var(--whatnot-black);">The Story:</strong> The South's food hub stayed traditional, with cookies, jams, and beverages claiming share from experimental categories</p>
 
       <div class="trends-grid">
         <div class="trend-card">
@@ -182,7 +549,7 @@
         <span class="category-icon">💄</span>
         <h2>Beauty: Extreme Transformation</h2>
       </div>
-      <p><strong>The Story:</strong> The South saw the most extreme shifts—fragrance exploded, luxury collapsed, and nails emerged as a dark horse</p>
+      <p style="color: var(--whatnot-gray); margin-bottom: 30px; font-size: 1.05rem;"><strong style="color: var(--whatnot-black);">The Story:</strong> The South saw the most extreme shifts—fragrance exploded, luxury collapsed, and nails emerged as a dark horse</p>
 
       <div class="trends-grid">
         <div class="trend-card">
@@ -221,7 +588,7 @@
         <span class="category-icon">🏈</span>
         <h2>Sports Cards: Fastest Growing Market</h2>
       </div>
-      <p><strong>The Story:</strong> The South saw the most explosive growth (+155% YoY)—hometown Braves and Falcons dominated as NFL claimed 10.4%</p>
+      <p style="color: var(--whatnot-gray); margin-bottom: 30px; font-size: 1.05rem;"><strong style="color: var(--whatnot-black);">The Story:</strong> The South saw the most explosive growth (+155% YoY)—hometown Braves and Falcons dominated as NFL claimed 10.4%</p>
 
       <div class="trends-grid">
         <div class="trend-card">
@@ -271,8 +638,9 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2026 Whatnot Insights. Atlanta Trends Report.</p>
-      <p>Data from 2026 Complete Trend Report</p>
+      <div class="footer-logo">WHATNOT</div>
+      <p>&copy; 2026 Whatnot. All rights reserved.</p>
+      <p>Atlanta Trends Report | Data from 2026 Complete Trend Report</p>
     </div>
   </footer>
 </body>
